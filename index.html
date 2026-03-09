@@ -1,0 +1,37 @@
+const items = [
+  {
+    id: "elytra",
+    name: "Elytra",
+    description: "Minecraft-da uçmaq üçün istifadə olunur. Tapılır: End City.",
+    icon: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/e4/Elytra.png"
+  },
+  {
+    id: "diamond_sword",
+    name: "Diamond Sword",
+    description: "Güclü yaxın döyüş silahı. Craft: 2 diamond + 1 stick.",
+    icon: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/0e/Diamond_Sword_JE2.png"
+  },
+  {
+    id: "shield",
+    name: "Shield",
+    description: "Düşmən hücumlarına qarşı qoruyucu. Craft: 6 wood planks + 1 iron ingot.",
+    icon: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/3/33/Shield_%28Java_Edition%29.png"
+  }
+];
+
+const container = document.getElementById('items-container');
+
+items.forEach(item => {
+  const itemDiv = document.createElement('div');
+  itemDiv.classList.add('item');
+
+  itemDiv.innerHTML = `
+    <img src="${item.icon}" alt="${item.name}">
+    <div class="tooltip">
+      <strong>${item.name}</strong><br>
+      ${item.description}
+    </div>
+  `;
+
+  container.appendChild(itemDiv);
+});
