@@ -1,37 +1,188 @@
-const items = [
-  {
-    id: "elytra",
-    name: "Elytra",
-    description: "Minecraft-da uçmaq üçün istifadə olunur. Tapılır: End City.",
-    icon: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/e/e4/Elytra.png"
-  },
-  {
-    id: "diamond_sword",
-    name: "Diamond Sword",
-    description: "Güclü yaxın döyüş silahı. Craft: 2 diamond + 1 stick.",
-    icon: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/0/0e/Diamond_Sword_JE2.png"
-  },
-  {
-    id: "shield",
-    name: "Shield",
-    description: "Düşmən hücumlarına qarşı qoruyucu. Craft: 6 wood planks + 1 iron ingot.",
-    icon: "https://static.wikia.nocookie.net/minecraft_gamepedia/images/3/33/Shield_%28Java_Edition%29.png"
-  }
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Minecraft Skins</title>
+
+<link href="https://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+
+<style>
+
+body{
+background-image:url("https://wallpapercave.com/wp/wp2757874.jpg");
+background-size:cover;
+background-position:center;
+background-repeat:no-repeat;
+font-family:'Minecraft', Arial;
+color:white;
+text-align:center;
+}
+
+h1{
+color:#55ff55;
+text-shadow:3px 3px 0px black;
+}
+
+.skin{
+display:inline-block;
+background:#2a2a2a;
+padding:15px;
+margin:10px;
+border-radius:10px;
+}
+
+img{
+width:120px;
+cursor:pointer;
+}
+
+button{
+padding:6px 10px;
+margin:3px;
+border:none;
+border-radius:5px;
+background:#4CAF50;
+color:white;
+cursor:pointer;
+}
+
+input{
+padding:10px;
+font-size:16px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Minecraft Skin Gallery</h1>
+
+<input id="nick" placeholder="Minecraft nick yaz">
+<button onclick="searchSkin()">Axtar</button>
+
+<div id="result"></div>
+
+<h2>Populyar Skinlər</h2>
+
+<div id="skins"></div>
+
+<div id="adPopup" style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+align-items:center;
+justify-content:center;
+z-index:9999;
+color:white;
+">
+
+<div style="
+background:#111;
+padding:40px;
+border-radius:10px;
+position:relative;
+text-align:center;
+">
+
+<h2>🎁 Minecraft Bonus</h2>
+<p>Yeni skinlər və serverlər tapıldı</p>
+<p>5 saniyə gözləyin...</p>
+
+<button id="closeAd"
+style="
+display:none;
+position:absolute;
+top:5px;
+right:5px;
+background:black;
+color:white;
+border:1px solid white;
+padding:5px 10px;
+cursor:pointer;
+">
+X
+</button>
+
+</div>
+</div>
+
+<script>
+
+let skins = [
+"Dream","Technoblade","Notch","Herobrine","Steve","Alex",
+"DanTDM","CaptainSparklez","Skeppy","BadBoyHalo",
+"GeorgeNotFound","Sapnap","TommyInnit","Tubbo",
+"Philza","Quackity","Ranboo","Grian","Mumbo",
+"Preston","Unspeakable","Illumina","Fruitberries",
+"Purpled","Punz","Wisp","TapL","Fundy",
+"Antfrost","Awesamdude","ConnorEatsPants","HBomb94",
+"Eret","Nihachu","KarlJacobs","Vikkstar",
+"LazarBeam","JeromeASF","SSundee","PopularMMOs",
+"GamingWithJen","Stampy","LDShadowLady","SmallishBeans",
+"SB737","Technodad","FitMC","Slogo",
+"Crainer","MooseCraft","Bionic","ClownPierce"
 ];
 
-const container = document.getElementById('items-container');
+let container = document.getElementById("skins");
 
-items.forEach(item => {
-  const itemDiv = document.createElement('div');
-  itemDiv.classList.add('item');
+skins.forEach(function(name){
 
-  itemDiv.innerHTML = `
-    <img src="${item.icon}" alt="${item.name}">
-    <div class="tooltip">
-      <strong>${item.name}</strong><br>
-      ${item.description}
-    </div>
-  `;
+let div = document.createElement("div");
+div.className="skin";
 
-  container.appendChild(itemDiv);
+div.innerHTML = `
+<img src="https://minotar.net/armor/body/${name}/200.png"
+onclick="window.open('https://minotar.net/armor/body/${name}/600.png')">
+
+<p>${name}</p>
+
+<button onclick="window.open('https://minotar.net/download/${name}')">Download</button>
+`;
+
+container.appendChild(div);
+
 });
+
+function searchSkin(){
+
+let name=document.getElementById("nick").value;
+
+let html=`
+<div class="skin">
+
+<img src="https://minotar.net/armor/body/${name}/200.png">
+
+<p>${name}</p>
+
+<button onclick="window.open('https://minotar.net/download/${name}')">Download</button>
+
+</div>
+`;
+
+document.getElementById("result").innerHTML=html;
+
+}
+
+document.getElementById("nick").addEventListener("keypress",function(e){
+if(e.key==="Enter"){
+searchSkin();
+}
+});
+
+setTimeout(function(){
+document.getElementById("closeAd").style.display="block";
+},5000);
+
+document.getElementById("closeAd").onclick=function(){
+document.getElementById("adPopup").style.display="none";
+};
+
+</script>
+
+</body>
+</html>
